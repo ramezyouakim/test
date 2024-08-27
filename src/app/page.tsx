@@ -54,7 +54,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="flex-1 justify-center items-center">
       {userData ? (
         <div className="relative overflow-x-auto">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -80,7 +80,7 @@ export default function Home() {
                   Is premium
                 </th>
                 <td className="px-6 py-4">
-                  {userData.is_premium ?? false}
+                  {userData.is_premium || 'false'}
                 </td>
               </tr>
             </tbody>
@@ -91,7 +91,7 @@ export default function Home() {
       )}
 
       <h1>new changes 2</h1>
-      <button onClick={openInvoice} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 self-center">pay</button>
-    </>
+      <button onClick={openInvoice} type="button" className="flex-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 self-center">pay</button>
+    </div>
   );
 }
