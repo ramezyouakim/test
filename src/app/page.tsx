@@ -55,14 +55,7 @@ export default function Home() {
 
   return (
     <>
-      <>
-        <h1>new changes 2</h1>
-        <button onClick={openInvoice} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">pay</button>
-      </>
       {userData ? (
-
-
-
         <div className="relative overflow-x-auto">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <tbody>
@@ -71,7 +64,7 @@ export default function Home() {
                   name
                 </th>
                 <td className="px-6 py-4">
-                  {userData.firstName} {userData.lastName}
+                  {userData.first_name} {userData.last_name}
                 </td>
               </tr>
               <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -87,7 +80,7 @@ export default function Home() {
                   Is premium
                 </th>
                 <td className="px-6 py-4">
-                  {userData.is_premium}
+                  {userData.is_premium ?? false}
                 </td>
               </tr>
             </tbody>
@@ -96,6 +89,9 @@ export default function Home() {
       ) : (
         <h1>Loading ...</h1>
       )}
+
+      <h1>new changes 2</h1>
+      <button onClick={openInvoice} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 self-center">pay</button>
     </>
   );
 }
