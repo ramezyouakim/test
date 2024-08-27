@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     openInvoice()
     if (WebApp.initDataUnsafe?.user) {
-      // WebApp.openInvoice()
+      // WebApp.invo()
       setUserData(WebApp.initDataUnsafe.user)
     }
   }, [])
@@ -20,7 +20,7 @@ export default function Home() {
   const openInvoice = async () => {
     try {
       const response = await fetch("https://api.telegram.org/bot7529380285:AAHj4qaLHkTo6IWfYWHXqspZ29fn05Wq_BI/createInvoiceLink", {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -30,7 +30,6 @@ export default function Home() {
           payload: 'unique_payload_identifier',
           provider_token: '',
           currency: 'XTR',
-          need_name: true,
           prices: [
             {
               label: 'Breakfast included',
