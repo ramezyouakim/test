@@ -45,6 +45,7 @@ export default function Home() {
 
       const data = await response.json();
       console.log('Invoice created:', data);
+      WebApp.openInvoice(data?.result)
       // Handle the created invoice, e.g., open it in a WebView or redirect the user
     } catch (error) {
       console.error('Error creating invoice:', error);
