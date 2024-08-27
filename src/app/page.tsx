@@ -11,6 +11,7 @@ export default function Home() {
   useEffect(() => {
     getApiData()
     if (WebApp.initDataUnsafe?.user) {
+      // WebApp.openInvoice()
       setUserData(WebApp.initDataUnsafe.user)
     }
   }, [])
