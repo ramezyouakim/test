@@ -9,7 +9,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    openInvoice()
+    // openInvoice()
     if (WebApp.initDataUnsafe?.user) {
       // WebApp.invo()
       setUserData(WebApp.initDataUnsafe.user)
