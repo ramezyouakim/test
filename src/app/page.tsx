@@ -7,15 +7,11 @@ export default function Home() {
   const [userData, setUserData] = useState<null | any>(null)
   const [data, setData] = useState<null | any>(null)
 
-
   useEffect(() => {
-    // openInvoice()
     if (WebApp.initDataUnsafe?.user) {
-      // WebApp.invo()
       setUserData(WebApp.initDataUnsafe.user)
     }
   }, [])
-
 
   const openInvoice = async () => {
     try {
@@ -45,14 +41,16 @@ export default function Home() {
 
       const data = await response.json();
       console.log('Invoice created:', data);
-      WebApp.openInvoice(data?.result)
-      console.log("result ",data?.result)
-      // Handle the created invoice, e.g., open it in a WebView or redirect the user
+
+      if (typeof window !== 'undefined' && WebApp) {
+        WebApp.openInvoice(data?.result);
+      }
+      console.log("result ", data?.result);
     } catch (error) {
       console.error('Error creating invoice:', error);
     }
 
-    setData(data)
+    setData(data);
   };
 
   return (
@@ -61,18 +59,18 @@ export default function Home() {
         <h1>new changes 2</h1>
         <button onClick={openInvoice}>pay</button>
       </>
-      {userData ?
+      {userData ? (
         <>
           <ul>
             <li>ID: {userData.id}</li>
-            <li>Name: {userData.first_name}  {userData.last_name}</li>
+            <li>Name: {userData.first_name} {userData.last_name}</li>
             <li>Is premium: {userData.is_premium}</li>
           </ul>
-
-          <p> Invoice data: {data}</p>
+          <p>Invoice data: {data}</p>
         </>
-        :
-        <h1>Loading ...</h1>}
+      ) : (
+        <h1>Loading ...</h1>
+      )}
     </>
   );
 }
