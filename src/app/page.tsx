@@ -57,17 +57,42 @@ export default function Home() {
     <>
       <>
         <h1>new changes 2</h1>
-        <button onClick={openInvoice}>pay</button>
+        <button onClick={openInvoice} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">pay</button>
       </>
       {userData ? (
-        <>
-          <ul>
-            <li>ID: {userData.id}</li>
-            <li>Name: {userData.first_name} {userData.last_name}</li>
-            <li>Is premium: {userData.is_premium}</li>
-          </ul>
-          <p>Invoice data: {data}</p>
-        </>
+
+
+
+        <div className="relative overflow-x-auto">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <tbody>
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  name
+                </th>
+                <td className="px-6 py-4">
+                  {userData.firstName} {userData.lastName}
+                </td>
+              </tr>
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  ID
+                </th>
+                <td className="px-6 py-4">
+                  {userData.id}
+                </td>
+              </tr>
+              <tr className="bg-white dark:bg-gray-800">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Is premium
+                </th>
+                <td className="px-6 py-4">
+                  {userData.is_premium}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       ) : (
         <h1>Loading ...</h1>
       )}
