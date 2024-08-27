@@ -20,7 +20,7 @@ export default function Home() {
   const openInvoice = async () => {
     try {
       const response = await fetch("https://api.telegram.org/bot7529380285:AAHj4qaLHkTo6IWfYWHXqspZ29fn05Wq_BI/createInvoiceLink", {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
