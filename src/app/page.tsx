@@ -17,13 +17,13 @@ export default function Home() {
 
 
   const getApiData = async () => {
-    const res = await fetch("https://api.telegram.org/7529380285:AAHj4qaLHkTo6IWfYWHXqspZ29fn05Wq_BI/getMe")
+    const res = await fetch("https://api.telegram.org/bot7529380285:AAHj4qaLHkTo6IWfYWHXqspZ29fn05Wq_BI/getMe")
     const resParsed = await res.json()
     setData(resParsed)
   }
   return (
     <>
-    <h1>new changes</h1>
+      <h1>new changes</h1>
       {userData ?
         <>
           <ul>
