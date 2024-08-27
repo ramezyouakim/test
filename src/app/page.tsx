@@ -9,7 +9,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    getApiData()
+    openInvoice()
     if (WebApp.initDataUnsafe?.user) {
       // WebApp.openInvoice()
       setUserData(WebApp.initDataUnsafe.user)
@@ -17,14 +17,49 @@ export default function Home() {
   }, [])
 
 
-  const getApiData = async () => {
-    const res = await fetch("https://api.telegram.org/bot7529380285:AAHj4qaLHkTo6IWfYWHXqspZ29fn05Wq_BI/getMe")
-    const resParsed = await res.json()
-    setData(resParsed)
-  }
+  const openInvoice = async () => {
+    try {
+      const response = await fetch("https://api.telegram.org/bot7529380285:AAHj4qaLHkTo6IWfYWHXqspZ29fn05Wq_BI/createInvoiceLink", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: 'test item',
+          description: 'test description',
+          payload: 'unique_payload_identifier',
+          provider_token: '',
+          currency: 'XTR',
+          need_name: true,
+          prices: [
+            {
+              label: 'Breakfast included',
+              amount: 1000,
+            },
+          ],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Invoice created:', data);
+      // Handle the created invoice, e.g., open it in a WebView or redirect the user
+    } catch (error) {
+      console.error('Error creating invoice:', error);
+    }
+
+    setData(data)
+  };
+
   return (
     <>
-      <h1>new changes</h1>
+      <>
+        <h1>new changes 1</h1>
+        <button onClick={openInvoice}>pay</button>
+      </>
       {userData ?
         <>
           <ul>
@@ -33,7 +68,7 @@ export default function Home() {
             <li>Is premium: {userData.is_premium}</li>
           </ul>
 
-          <p> data: {data}</p>
+          <p> Invoice data: {data}</p>
         </>
         :
         <h1>Loading ...</h1>}
