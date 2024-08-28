@@ -2,6 +2,7 @@
 
 import WebApp from "@twa-dev/sdk";
 import { useEffect, useState } from "react";
+import { TonConnectButton, TonConnectUIProvider } from '@tonconnect/ui-react';
 
 export default function Home() {
   const [userData, setUserData] = useState<null | any>(null)
@@ -54,45 +55,49 @@ export default function Home() {
   };
 
   return (
-    <div className="flex-1 justify-center items-center">
-      {userData ? (
-        <div className="relative overflow-x-auto">
-          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <tbody>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  name
-                </th>
-                <td className="px-6 py-4">
-                  {userData.first_name} {userData.last_name}
-                </td>
-              </tr>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  ID
-                </th>
-                <td className="px-6 py-4">
-                  {userData.id}
-                </td>
-              </tr>
-              <tr className="bg-white dark:bg-gray-800">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Is premium
-                </th>
-                <td className="px-6 py-4">
-                  {userData.is_premium || 'false'}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        <h1>Loading ...</h1>
-      )}
-      {/* <h1>Buy physical goods</h1>
+    <TonConnectUIProvider manifestUrl="https://test-n55s.vercel.app/tonconnect-manifest.json">
+      <div className="flex-1 justify-center items-center">
+        {userData ? (
+          <div className="relative overflow-x-auto">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <tbody>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    name
+                  </th>
+                  <td className="px-6 py-4">
+                    {userData.first_name} {userData.last_name}
+                  </td>
+                </tr>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    ID
+                  </th>
+                  <td className="px-6 py-4">
+                    {userData.id}
+                  </td>
+                </tr>
+                <tr className="bg-white dark:bg-gray-800">
+                  <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Is premium
+                  </th>
+                  <td className="px-6 py-4">
+                    {userData.is_premium || 'false'}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <h1>Loading ...</h1>
+        )}
+        {/* <h1>Buy physical goods</h1>
       <button onClick={openInvoice} type="button" className="flex-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 self-center">pay</button> */}
-      <h1>Buy digital goods</h1>
-      <button onClick={openInvoice} type="button" className="flex-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 self-center">pay</button>
-    </div>
+        <h1>Buy digital goods</h1>
+        <button onClick={openInvoice} type="button" className="flex-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 self-center">pay</button>
+        <TonConnectButton />
+
+      </div>
+    </TonConnectUIProvider>
   );
 }
