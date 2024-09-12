@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Login Widget</title>
+  <style>
+    .main {
+      padding: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <script
+      id="telegramLogin"
+      async
+      src="https://telegram.org/js/telegram-widget.js?22&v=<%=new Date().getTime()%>"
+      data-telegram-login="test2314nBot"
+      data-size="large"
+      data-auth-url="https://test-n55s.vercel.app/"
+      data-request-access="write">
+    </script>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      const searchParams = new URLSearchParams(window.location.search);
+      const paramsObject = Object.fromEntries(searchParams.entries());
+
+      if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(JSON.stringify(paramsObject));
+      }
+      window.parent.postMessage(paramsObject);
+    });
+  </script>
+  <script>
+    function callTelegramAuth() {
+      TWidgetLogin.auth();
+    }
+  </script>
+</body>
+</html>
