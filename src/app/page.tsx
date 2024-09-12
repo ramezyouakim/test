@@ -11,8 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-
-      const searchParams = new URLSearchParams(window?.location.search);
+      const searchParams = new URLSearchParams(window.location.search);
       alert(searchParams)
     }
   }, [])
