@@ -9,10 +9,12 @@ export default function Home() {
   const [userData, setUserData] = useState<null | any>(null)
   const [data, setData] = useState<null | any>(null)
   const router = useRouter();
-  const searchParams = new URLSearchParams(window.location.search);
-
+  
   useEffect(() => {
-    alert(searchParams)
+    if(window){
+      const searchParams = new URLSearchParams(window.location.search);
+      alert(searchParams)
+    }
   }, [])
 
   useEffect(() => {
