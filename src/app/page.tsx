@@ -3,16 +3,16 @@
 import WebApp from "@twa-dev/sdk";
 import { useEffect, useState } from "react";
 import { TonConnectButton, TonConnectUIProvider } from '@tonconnect/ui-react';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [userData, setUserData] = useState<null | any>(null)
   const [data, setData] = useState<null | any>(null)
   const router = useRouter();
-  const { query } = router;
+  const searchParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
-    alert(query)
+    alert(searchParams)
   }, [])
 
   useEffect(() => {
